@@ -1,21 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Xml;
-using System.Xml.Linq;
 using System.Xml.Serialization;
-using static System.Net.WebRequestMethods;
 
 namespace Gadelshin_Lab5
 {
-    class Gadelshin_Staff
+    public class Gadelshin_Staff
     {
+
+        public Gadelshin_Staff() { }
         public string Store_file { get; set; } = "data.xml";
 
         public List<Gadelshin_Employee> employees = new List<Gadelshin_Employee>();
-
-        public Gadelshin_Staff() { }
-
 
         public void Add_employee_to_list(Gadelshin_Employee employee)
         {
@@ -37,35 +33,55 @@ namespace Gadelshin_Lab5
         }
         public void SerializeData()
         {
-            try
+            Console.Write("Введите путь к файлу для записи: ");
+            string filePath = Console.ReadLine();
+
+            var xs = new XmlSerializer(typeof(List<Gadelshin_Employee>), new[] { typeof(Gadelshin_Employee), typeof(Gadelshin_Manager) });
+
+            if (System.IO.File.Exists(filePath))
             {
-                var xs = new XmlSerializer(typeof(List<Gadelshin_Employee>), new[] { typeof(Gadelshin_Employee), typeof(Gadelshin_Manager) });
-                using (Stream fs = new FileStream(Store_file, FileMode.Create))
+                using (Stream fs = new FileStream(filePath, FileMode.Create))
                 {
                     xs.Serialize(fs, employees);
+                    Console.WriteLine($"\nДанные успешно записаны в файл {filePath}");
                 }
             }
-            catch (Exception)
+            else
             {
-                Console.WriteLine($"Невозможно записать в файл {Store_file}");
+                Console.WriteLine($"Файл {filePath} не существует.");
             }
         }
 
         public void DeserializeData()
         {
+            Console.Write("Введите путь к файлу для загрузки: ");
+            string filePath = Console.ReadLine();
+
             var xs = new XmlSerializer(typeof(List<Gadelshin_Employee>), new[] { typeof(Gadelshin_Employee), typeof(Gadelshin_Manager) });
-            try
+
+            if (System.IO.File.Exists(filePath))
             {
-                using (Stream fs = new FileStream(Store_file, FileMode.Open))
+                using (Stream fs = new FileStream(filePath, FileMode.Open))
                 {
-                    employees = xs.Deserialize(fs) as List<Gadelshin_Employee>;
+                    List<Gadelshin_Employee> deserializedData = xs.Deserialize(fs) as List<Gadelshin_Employee>;
+
+                    if (deserializedData != null)
+                    {
+                        employees = deserializedData;
+                        Console.WriteLine($"\nДанные успешно загружены из файла {filePath}");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Не удалось десериализовать данные из файла {filePath}");
+                    }
                 }
             }
-            catch (Exception)
+            else
             {
-                Console.WriteLine($"Не удается открыть файл {Store_file}");
+                Console.WriteLine($"Файл {filePath} не существует.");
             }
         }
+
         public void Clear_employes()
         {
             employees.Clear();

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.IO;
-using System.Runtime.Serialization;
 
 namespace Gadelshin_Lab5
 {
@@ -14,15 +12,6 @@ namespace Gadelshin_Lab5
 
         public Gadelshin_Employee() { }
 
-        public virtual void Print_employee()
-        {
-            Console.WriteLine("----------");
-            Console.WriteLine($"Имя: {firstname}");
-            Console.WriteLine($"Фамилия: {secondname}");
-            Console.WriteLine($"Логин: {login}");
-            Console.WriteLine($"Номер телефона: {phone_number}");
-            Console.WriteLine("----------");
-        }
         public virtual void Add_employee()
         {
             Console.Write("Введите имя: ");
@@ -35,7 +24,25 @@ namespace Gadelshin_Lab5
             login = Console.ReadLine();
 
             Console.Write("Введите номер телефона: ");
-            phone_number = Utils.check_number();
+            phone_number = Utils.Check_Number();
         }
+
+        public virtual void Print_employee(bool printSeparator = true)
+        {
+            if (printSeparator)
+            {
+                Console.WriteLine("\nРаботник:");
+                Console.WriteLine("..................................");
+            }
+            Console.WriteLine($"Имя: {firstname}");
+            Console.WriteLine($"Фамилия: {secondname}");
+            Console.WriteLine($"Логин: {login}");
+            Console.WriteLine($"Номер телефона: {phone_number}");
+            if (printSeparator)
+            {
+                Console.WriteLine("..................................");
+            }
+        }
+
     }
 }

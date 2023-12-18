@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Gadelshin_Lab5
 {
-    class Utils
+    public class Utils
     {
-        public static ulong check_number()
+        public static ulong Check_Number()
         {
             while (true)
             {
@@ -22,7 +18,7 @@ namespace Gadelshin_Lab5
                 Console.WriteLine("Ошибка! Введите 11-значный номер телефона");
             }
         }
-        public static uint check_uint()
+        public static uint Check_Uint()
         {
             while (true)
             {
@@ -36,33 +32,30 @@ namespace Gadelshin_Lab5
                 Console.WriteLine("Введите корректное значение!");
             }
         }
-
-        public static void check_interval(uint value, uint min, uint max)
+        public static void Check_Interval(uint value, uint min, uint max)
         {
-            if (value >= min && value <= max)
+            if (value < min || value > max)
             {
-                return;
+                throw new ArgumentException($"Значение не в пределах [{min}, {max}]");
             }
-            throw new ArgumentException($"Значение не в пределах [{min}, {max}]");
         }
-
-        public static uint check_value(uint min, uint max)
+        public static uint Check_Value(uint min, uint max)
         {
             while (true)
             {
                 try
                 {
                     uint value = Convert.ToUInt32(Console.ReadLine());
-                    check_interval(value, min, max);
+                    Check_Interval(value, min, max);
                     return value;
-                }
-                catch (ArgumentException e)
-                {
-                    Console.WriteLine(e.Message);
                 }
                 catch (FormatException)
                 {
                     Console.WriteLine("Некоректные данные!");
+                }
+                catch (ArgumentException e)
+                {
+                    Console.WriteLine(e.Message);
                 }
             }
         }
