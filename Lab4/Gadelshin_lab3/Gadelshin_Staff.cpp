@@ -115,7 +115,6 @@ vector<int> Staff::get_x_coordinates(CDC* pDC, int x_inter, vector<CString> colu
 
 int Staff::GetList(CListBox& list) 
 {
-	int i = 0;
 	for_each(employees.begin(), employees.end(), [&list](shared_ptr<Gadelshin_Employee> employee) {
 		list.AddString(employee.get()->get_firstname());
 		}

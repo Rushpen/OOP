@@ -4,7 +4,7 @@
 Gadelshin_Employee::Gadelshin_Employee() {
     firstname = _T("");
     secondname = _T("");
-    phone_number = -1;
+    phone_number = 0;
     login = _T("");
 };
 

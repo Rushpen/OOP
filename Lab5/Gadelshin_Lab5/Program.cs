@@ -9,13 +9,9 @@ namespace Gadelshin_Lab5
             Gadelshin_Staff staff = new Gadelshin_Staff();
             while (true)
             {
-                Console.WriteLine("\n1: Добавить работника");
-                Console.WriteLine("2: Добавить менеджера");
-                Console.WriteLine("3: Вывести всех работников");
-                Console.WriteLine("4: Загрузить из файла");
-                Console.WriteLine("5: Загрузить в файл");
-                Console.WriteLine("6: Очистить всех работникв");
-                Console.WriteLine("0: Выход\n");
+                Console.WriteLine("\n1: Добавить работника \n2: Добавить менеджера" +
+                    " \n3: Вывести всех работников \n4: Загрузить из файла \n5: Загрузить в файл" +
+                    " \n6: Очистить всех работникв \n7: Изменить файл хранения \n0: Выход\n");
 
                 uint Choice = Utils.Check_Value(0, 6);
 
@@ -37,11 +33,11 @@ namespace Gadelshin_Lab5
                 }
                 else if (Choice == 4)
                 {
-                    staff.DeserializeData();
+                    staff.Serialization_from_file();
                 }
                 else if (Choice == 5)
                 {
-                    staff.SerializeData();
+                    staff.Serialization_to_file();
                 }
                 else if (Choice == 6)
                 {
