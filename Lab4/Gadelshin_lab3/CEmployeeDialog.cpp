@@ -58,6 +58,18 @@ BEGIN_MESSAGE_MAP(CEmployeeDialog, CDialogEx)
 END_MESSAGE_MAP()
 // CEmployeeDialog message handlers
 
+void CEmployeeDialog::ShowUIElements()
+{
+	GetDlgItem(IDC_STATIC_FIRSTNAME)->ShowWindow(SW_SHOW);
+	GetDlgItem(IDC_STATIC_SECONDNAME)->ShowWindow(SW_SHOW);
+	GetDlgItem(IDC_STATIC_LOGIN)->ShowWindow(SW_SHOW);
+	GetDlgItem(IDC_STATIC_PHONENUMBER)->ShowWindow(SW_SHOW);
+	GetDlgItem(IDC_EDIT_FIRSTNAME)->ShowWindow(SW_SHOW);
+	GetDlgItem(IDC_EDIT_SECONDNAME)->ShowWindow(SW_SHOW);
+	GetDlgItem(IDC_EDIT_LOGIN)->ShowWindow(SW_SHOW);
+	GetDlgItem(IDC_EDIT_PHONENUMBER)->ShowWindow(SW_SHOW);
+}
+
 void CEmployeeDialog::PrintData(int index) {
 	shared_ptr <Gadelshin_Employee> employee = pDoc->staff.GetEmployee(index);
 	edit_firstname.SetWindowText(employee->get_firstname());
@@ -65,6 +77,7 @@ void CEmployeeDialog::PrintData(int index) {
 	edit_login.SetWindowText(employee->get_login());
 	edit_phone_number.SetWindowText(CString(to_string(employee->get_phone_number()).c_str()));
 	string class_name = typeid(*employee).name();
+
 	if (class_name == "class Gadelshin_Employee") {
 		GetDlgItem(IDC_STATIC_TEAMSIZE)->ShowWindow(SW_HIDE);
 		GetDlgItem(IDC_STATIC_EXPYEARS)->ShowWindow(SW_HIDE);
@@ -92,8 +105,11 @@ void CEmployeeDialog::PrintData(int index) {
 
 void CEmployeeDialog::OnLbnSelchangeListBox()
 {
-	current_index = list_box.GetCaretIndex();;
-	PrintData(current_index);
+	current_index = list_box.GetCaretIndex();
+	if (list_box.GetCount() != 0) {
+		ShowUIElements();
+		PrintData(current_index);
+	}
 }
 
 void CEmployeeDialog::OnEnKillfocusEditFirstname()
@@ -240,6 +256,10 @@ void CEmployeeDialog::OnBnClickedBtnDltEmployee()
 				edit_phone_number.SetWindowText(L"");
 				edit_teamSize.SetWindowText(L"");
 				edit_expYears.SetWindowText(L"");
+				GetDlgItem(IDC_EDIT_FIRSTNAME)->ShowWindow(SW_HIDE);
+				GetDlgItem(IDC_EDIT_SECONDNAME)->ShowWindow(SW_HIDE);
+				GetDlgItem(IDC_EDIT_LOGIN)->ShowWindow(SW_HIDE);
+				GetDlgItem(IDC_EDIT_PHONENUMBER)->ShowWindow(SW_HIDE);
 				GetDlgItem(IDC_EDIT_TEAMSIZE)->ShowWindow(SW_HIDE);
 				GetDlgItem(IDC_EDIT_EXPYEARS)->ShowWindow(SW_HIDE);
 				GetDlgItem(IDC_STATIC_TEAMSIZE)->ShowWindow(SW_HIDE);

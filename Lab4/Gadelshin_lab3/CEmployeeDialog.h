@@ -23,6 +23,7 @@ protected:
 	DECLARE_MESSAGE_MAP()
 
 public:
+	void ShowUIElements();
 	void PrintData(int index);
 	BOOL OnInitDialog();
 	int current_index = 0;
