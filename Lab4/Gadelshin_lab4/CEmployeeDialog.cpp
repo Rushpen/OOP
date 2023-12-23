@@ -68,6 +68,7 @@ void CEmployeeDialog::ShowUIElements()
 	GetDlgItem(IDC_EDIT_SECONDNAME)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_EDIT_LOGIN)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_EDIT_PHONENUMBER)->ShowWindow(SW_SHOW);
+	GetDlgItem(IDC_BTN_DLT_EMPLOYEE)->EnableWindow(TRUE);
 }
 
 void CEmployeeDialog::PrintData(int index) {
@@ -264,6 +265,7 @@ void CEmployeeDialog::OnBnClickedBtnDltEmployee()
 				GetDlgItem(IDC_EDIT_EXPYEARS)->ShowWindow(SW_HIDE);
 				GetDlgItem(IDC_STATIC_TEAMSIZE)->ShowWindow(SW_HIDE);
 				GetDlgItem(IDC_STATIC_EXPYEARS)->ShowWindow(SW_HIDE);
+				GetDlgItem(IDC_BTN_DLT_EMPLOYEE)->EnableWindow(FALSE);
 			}
 		}
 	}
