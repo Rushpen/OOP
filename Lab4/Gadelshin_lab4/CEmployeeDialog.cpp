@@ -58,16 +58,14 @@ BEGIN_MESSAGE_MAP(CEmployeeDialog, CDialogEx)
 END_MESSAGE_MAP()
 // CEmployeeDialog message handlers
 
-void CEmployeeDialog::ShowUIElements()
-{
-	GetDlgItem(IDC_STATIC_FIRSTNAME)->ShowWindow(SW_SHOW);
-	GetDlgItem(IDC_STATIC_SECONDNAME)->ShowWindow(SW_SHOW);
-	GetDlgItem(IDC_STATIC_LOGIN)->ShowWindow(SW_SHOW);
-	GetDlgItem(IDC_STATIC_PHONENUMBER)->ShowWindow(SW_SHOW);
-	GetDlgItem(IDC_EDIT_FIRSTNAME)->ShowWindow(SW_SHOW);
-	GetDlgItem(IDC_EDIT_SECONDNAME)->ShowWindow(SW_SHOW);
-	GetDlgItem(IDC_EDIT_LOGIN)->ShowWindow(SW_SHOW);
-	GetDlgItem(IDC_EDIT_PHONENUMBER)->ShowWindow(SW_SHOW);
+
+void CEmployeeDialog::EnableUIElements() {
+	GetDlgItem(IDC_EDIT_FIRSTNAME)->EnableWindow(TRUE);
+	GetDlgItem(IDC_EDIT_SECONDNAME)->EnableWindow(TRUE);
+	GetDlgItem(IDC_EDIT_LOGIN)->EnableWindow(TRUE);
+	GetDlgItem(IDC_EDIT_PHONENUMBER)->EnableWindow(TRUE);
+	GetDlgItem(IDC_EDIT_EXPYEARS)->EnableWindow(TRUE);
+	GetDlgItem(IDC_EDIT_TEAMSIZE)->EnableWindow(TRUE);
 	GetDlgItem(IDC_BTN_DLT_EMPLOYEE)->EnableWindow(TRUE);
 }
 
@@ -108,7 +106,7 @@ void CEmployeeDialog::OnLbnSelchangeListBox()
 {
 	current_index = list_box.GetCaretIndex();
 	if (list_box.GetCount() != 0) {
-		ShowUIElements();
+		EnableUIElements();
 		PrintData(current_index);
 	}
 }
@@ -257,14 +255,13 @@ void CEmployeeDialog::OnBnClickedBtnDltEmployee()
 				edit_phone_number.SetWindowText(L"");
 				edit_teamSize.SetWindowText(L"");
 				edit_expYears.SetWindowText(L"");
-				GetDlgItem(IDC_EDIT_FIRSTNAME)->ShowWindow(SW_HIDE);
-				GetDlgItem(IDC_EDIT_SECONDNAME)->ShowWindow(SW_HIDE);
-				GetDlgItem(IDC_EDIT_LOGIN)->ShowWindow(SW_HIDE);
-				GetDlgItem(IDC_EDIT_PHONENUMBER)->ShowWindow(SW_HIDE);
-				GetDlgItem(IDC_EDIT_TEAMSIZE)->ShowWindow(SW_HIDE);
-				GetDlgItem(IDC_EDIT_EXPYEARS)->ShowWindow(SW_HIDE);
-				GetDlgItem(IDC_STATIC_TEAMSIZE)->ShowWindow(SW_HIDE);
-				GetDlgItem(IDC_STATIC_EXPYEARS)->ShowWindow(SW_HIDE);
+
+				GetDlgItem(IDC_EDIT_FIRSTNAME)->EnableWindow(FALSE);
+				GetDlgItem(IDC_EDIT_SECONDNAME)->EnableWindow(FALSE);
+				GetDlgItem(IDC_EDIT_LOGIN)->EnableWindow(FALSE);
+				GetDlgItem(IDC_EDIT_PHONENUMBER)->EnableWindow(FALSE);
+				GetDlgItem(IDC_EDIT_TEAMSIZE)->EnableWindow(FALSE);
+				GetDlgItem(IDC_EDIT_EXPYEARS)->EnableWindow(FALSE);
 				GetDlgItem(IDC_BTN_DLT_EMPLOYEE)->EnableWindow(FALSE);
 			}
 		}
