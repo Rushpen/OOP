@@ -33,115 +33,80 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.TBName = new System.Windows.Forms.TextBox();
-            this.TBGroup = new System.Windows.Forms.TextBox();
-            this.TBRate = new System.Windows.Forms.TextBox();
-            this.TBExp = new System.Windows.Forms.TextBox();
             this.BAddMember = new System.Windows.Forms.Button();
             this.BDelMember = new System.Windows.Forms.Button();
             this.BEditData = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.BAddPres = new System.Windows.Forms.Button();
+            this.BAddManager = new System.Windows.Forms.Button();
             this.BSaveMembers = new System.Windows.Forms.Button();
             this.BLoadMembers = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.TBTeamSize = new System.Windows.Forms.TextBox();
-            this.TBExperience = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.TBExperience = new System.Windows.Forms.TextBox();
+            this.TBTeamSize = new System.Windows.Forms.TextBox();
+            this.TBExp = new System.Windows.Forms.TextBox();
+            this.TBRate = new System.Windows.Forms.TextBox();
+            this.TBGroup = new System.Windows.Forms.TextBox();
+            this.TBName = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // LBMemNames
             // 
+            this.LBMemNames.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.LBMemNames.FormattingEnabled = true;
-            this.LBMemNames.ItemHeight = 20;
+            this.LBMemNames.ItemHeight = 29;
             this.LBMemNames.Location = new System.Drawing.Point(13, 19);
             this.LBMemNames.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.LBMemNames.Name = "LBMemNames";
-            this.LBMemNames.Size = new System.Drawing.Size(278, 424);
+            this.LBMemNames.Size = new System.Drawing.Size(278, 410);
             this.LBMemNames.TabIndex = 0;
             this.LBMemNames.SelectedIndexChanged += new System.EventHandler(this.LBMemNames_SelectedIndexChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.Location = new System.Drawing.Point(319, 44);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(80, 20);
+            this.label1.Size = new System.Drawing.Size(104, 25);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Firstname";
+            this.label1.Text = "Firstname:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label2.Location = new System.Drawing.Point(319, 122);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(104, 20);
+            this.label2.Size = new System.Drawing.Size(135, 25);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Secondname";
+            this.label2.Text = "Secondname:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label3.Location = new System.Drawing.Point(319, 207);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(48, 20);
+            this.label3.Size = new System.Drawing.Size(66, 25);
             this.label3.TabIndex = 3;
-            this.label3.Text = "Login";
+            this.label3.Text = "Login:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label4.Location = new System.Drawing.Point(319, 278);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(132, 20);
+            this.label4.Size = new System.Drawing.Size(168, 25);
             this.label4.TabIndex = 4;
-            this.label4.Text = "Number of phone";
-            // 
-            // TBName
-            // 
-            this.TBName.Enabled = false;
-            this.TBName.Location = new System.Drawing.Point(485, 38);
-            this.TBName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.TBName.Name = "TBName";
-            this.TBName.Size = new System.Drawing.Size(148, 26);
-            this.TBName.TabIndex = 5;
-            this.TBName.TextChanged += new System.EventHandler(this.TBName_TextChanged);
-            // 
-            // TBGroup
-            // 
-            this.TBGroup.Enabled = false;
-            this.TBGroup.Location = new System.Drawing.Point(487, 116);
-            this.TBGroup.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.TBGroup.Name = "TBGroup";
-            this.TBGroup.Size = new System.Drawing.Size(148, 26);
-            this.TBGroup.TabIndex = 6;
-            this.TBGroup.TextChanged += new System.EventHandler(this.TBGroup_TextChanged);
-            // 
-            // TBRate
-            // 
-            this.TBRate.Enabled = false;
-            this.TBRate.Location = new System.Drawing.Point(485, 201);
-            this.TBRate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.TBRate.Name = "TBRate";
-            this.TBRate.Size = new System.Drawing.Size(148, 26);
-            this.TBRate.TabIndex = 7;
-            this.TBRate.TextChanged += new System.EventHandler(this.TBRate_TextChanged);
-            // 
-            // TBExp
-            // 
-            this.TBExp.Enabled = false;
-            this.TBExp.Location = new System.Drawing.Point(485, 275);
-            this.TBExp.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.TBExp.Name = "TBExp";
-            this.TBExp.Size = new System.Drawing.Size(148, 26);
-            this.TBExp.TabIndex = 8;
-            this.TBExp.TextChanged += new System.EventHandler(this.TBExp_TextChanged);
+            this.label4.Text = "Number of phone:";
             // 
             // BAddMember
             // 
@@ -167,6 +132,7 @@
             // 
             // BEditData
             // 
+            this.BEditData.Enabled = false;
             this.BEditData.Location = new System.Drawing.Point(78, 589);
             this.BEditData.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.BEditData.Name = "BEditData";
@@ -180,16 +146,16 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // BAddPres
+            // BAddManager
             // 
-            this.BAddPres.Location = new System.Drawing.Point(78, 498);
-            this.BAddPres.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.BAddPres.Name = "BAddPres";
-            this.BAddPres.Size = new System.Drawing.Size(145, 35);
-            this.BAddPres.TabIndex = 12;
-            this.BAddPres.Text = "Add manager";
-            this.BAddPres.UseVisualStyleBackColor = true;
-            this.BAddPres.Click += new System.EventHandler(this.BAddPres_Click);
+            this.BAddManager.Location = new System.Drawing.Point(78, 498);
+            this.BAddManager.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.BAddManager.Name = "BAddManager";
+            this.BAddManager.Size = new System.Drawing.Size(145, 35);
+            this.BAddManager.TabIndex = 12;
+            this.BAddManager.Text = "Add manager";
+            this.BAddManager.UseVisualStyleBackColor = true;
+            this.BAddManager.Click += new System.EventHandler(this.BAddPres_Click);
             // 
             // BSaveMembers
             // 
@@ -216,38 +182,22 @@
             // label5
             // 
             this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label5.Location = new System.Drawing.Point(319, 356);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(98, 20);
+            this.label5.Size = new System.Drawing.Size(126, 25);
             this.label5.TabIndex = 16;
-            this.label5.Text = "Size of team";
+            this.label5.Text = "Size of team:";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label6.Location = new System.Drawing.Point(319, 423);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(136, 20);
+            this.label6.Size = new System.Drawing.Size(178, 25);
             this.label6.TabIndex = 17;
-            this.label6.Text = "Experience(years)";
-            // 
-            // TBTeamSize
-            // 
-            this.TBTeamSize.Enabled = false;
-            this.TBTeamSize.Location = new System.Drawing.Point(483, 356);
-            this.TBTeamSize.Name = "TBTeamSize";
-            this.TBTeamSize.Size = new System.Drawing.Size(150, 26);
-            this.TBTeamSize.TabIndex = 18;
-            this.TBTeamSize.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            // 
-            // TBExperience
-            // 
-            this.TBExperience.Enabled = false;
-            this.TBExperience.Location = new System.Drawing.Point(483, 427);
-            this.TBExperience.Name = "TBExperience";
-            this.TBExperience.Size = new System.Drawing.Size(148, 26);
-            this.TBExperience.TabIndex = 19;
-            this.TBExperience.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.label6.Text = "Experience(years):";
             // 
             // label7
             // 
@@ -259,26 +209,78 @@
             this.label7.TabIndex = 20;
             this.label7.Text = "File:";
             // 
+            // TBExperience
+            // 
+            this.TBExperience.Enabled = false;
+            this.TBExperience.Location = new System.Drawing.Point(519, 426);
+            this.TBExperience.Name = "TBExperience";
+            this.TBExperience.Size = new System.Drawing.Size(148, 26);
+            this.TBExperience.TabIndex = 37;
+            // 
+            // TBTeamSize
+            // 
+            this.TBTeamSize.Enabled = false;
+            this.TBTeamSize.Location = new System.Drawing.Point(519, 358);
+            this.TBTeamSize.Name = "TBTeamSize";
+            this.TBTeamSize.Size = new System.Drawing.Size(150, 26);
+            this.TBTeamSize.TabIndex = 36;
+            // 
+            // TBExp
+            // 
+            this.TBExp.Enabled = false;
+            this.TBExp.Location = new System.Drawing.Point(519, 279);
+            this.TBExp.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TBExp.Name = "TBExp";
+            this.TBExp.Size = new System.Drawing.Size(148, 26);
+            this.TBExp.TabIndex = 35;
+            // 
+            // TBRate
+            // 
+            this.TBRate.Enabled = false;
+            this.TBRate.Location = new System.Drawing.Point(519, 208);
+            this.TBRate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TBRate.Name = "TBRate";
+            this.TBRate.Size = new System.Drawing.Size(148, 26);
+            this.TBRate.TabIndex = 34;
+            // 
+            // TBGroup
+            // 
+            this.TBGroup.Enabled = false;
+            this.TBGroup.Location = new System.Drawing.Point(519, 123);
+            this.TBGroup.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TBGroup.Name = "TBGroup";
+            this.TBGroup.Size = new System.Drawing.Size(148, 26);
+            this.TBGroup.TabIndex = 33;
+            // 
+            // TBName
+            // 
+            this.TBName.Enabled = false;
+            this.TBName.Location = new System.Drawing.Point(519, 45);
+            this.TBName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TBName.Name = "TBName";
+            this.TBName.Size = new System.Drawing.Size(148, 26);
+            this.TBName.TabIndex = 32;
+            // 
             // StaffEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(790, 665);
-            this.Controls.Add(this.label7);
             this.Controls.Add(this.TBExperience);
             this.Controls.Add(this.TBTeamSize);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.BLoadMembers);
-            this.Controls.Add(this.BSaveMembers);
-            this.Controls.Add(this.BAddPres);
-            this.Controls.Add(this.BEditData);
-            this.Controls.Add(this.BDelMember);
-            this.Controls.Add(this.BAddMember);
             this.Controls.Add(this.TBExp);
             this.Controls.Add(this.TBRate);
             this.Controls.Add(this.TBGroup);
             this.Controls.Add(this.TBName);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.BLoadMembers);
+            this.Controls.Add(this.BSaveMembers);
+            this.Controls.Add(this.BAddManager);
+            this.Controls.Add(this.BEditData);
+            this.Controls.Add(this.BDelMember);
+            this.Controls.Add(this.BAddMember);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -302,23 +304,20 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-
-        private System.Windows.Forms.TextBox TBName;
-        private System.Windows.Forms.TextBox TBGroup;
-        private System.Windows.Forms.TextBox TBRate;
-        private System.Windows.Forms.TextBox TBExp;
         private System.Windows.Forms.Button BAddMember;
         private System.Windows.Forms.Button BDelMember;
         private System.Windows.Forms.Button BEditData;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
-        private System.Windows.Forms.Button BAddPres;
+        private System.Windows.Forms.Button BAddManager;
         private System.Windows.Forms.Button BSaveMembers;
         private System.Windows.Forms.Button BLoadMembers;
-
-        private System.Windows.Forms.TextBox TBTeamSize;
         private System.Windows.Forms.TextBox TBExperience;
-
+        private System.Windows.Forms.TextBox TBTeamSize;
+        private System.Windows.Forms.TextBox TBExp;
+        private System.Windows.Forms.TextBox TBRate;
+        private System.Windows.Forms.TextBox TBGroup;
+        private System.Windows.Forms.TextBox TBName;
     }
 }
 

@@ -1,13 +1,15 @@
 ﻿using System;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
+using Gadelshin_lab6;
 
 namespace Gadelshin_Lab6
 {
 
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
-    struct ClassInfo
+    public struct ClassInfo
     {
         [MarshalAs(UnmanagedType.U1)]
         public byte isBaseClass;
@@ -40,35 +42,35 @@ namespace Gadelshin_Lab6
         StringBuilder storageFile = new StringBuilder("real_data");
 
         [DllImport("SSSClasses", CharSet = CharSet.Ansi)]
-        static extern void GetClassInfo_(ref ClassInfo st, int i);
+        public static extern void GetClassInfo_(ref ClassInfo st, int i);
 
 
         [DllImport("SSSClasses", CharSet = CharSet.Ansi)]
-        static extern void SetClassInfo(ref ClassInfo st, int i);
+        public static extern void SetClassInfo(ref ClassInfo st, int i);
 
 
         [DllImport("SSSClasses", CharSet = CharSet.Ansi)]
-        static extern int GetSssSize();
+        public static extern int GetSssSize();
 
 
         [DllImport("SSSClasses", CharSet = CharSet.Ansi)]
-        static extern void Erase(int i);
+        public static extern void Erase(int i);
 
 
         [DllImport("SSSClasses", CharSet = CharSet.Ansi)]
-        static extern void AddMember();
+        public static extern void AddMember(ref ClassInfo inf);
 
 
         [DllImport("SSSClasses", CharSet = CharSet.Ansi)]
-        static extern void AddPresident();
+        public static extern void AddPresident(ref ClassInfo inf);
 
 
         [DllImport("SSSClasses", CharSet = CharSet.Ansi)]
-        static extern void GetFromFile(StringBuilder fileName);
+        public static extern void GetFromFile(StringBuilder fileName);
 
 
         [DllImport("SSSClasses", CharSet = CharSet.Ansi)]
-        static extern void LoadToFile(StringBuilder fileName);
+        public static extern void LoadToFile(StringBuilder fileName);
 
         ClassInfo info;
         int currentIndex;
@@ -78,44 +80,79 @@ namespace Gadelshin_Lab6
             InitializeComponent();
         }
 
-        private void enable_fields(int i)
+        private void updateLBMemNames(int index = 0)
         {
-            if (i == 1) 
-            {
-                TBName.Enabled = true;
-                TBGroup.Enabled = true;
-                TBRate.Enabled = true;
-                TBExp.Enabled = true;
-            }
-            else 
-            {
-                TBName.Enabled = false;
-                TBGroup.Enabled = false;
-                TBRate.Enabled = false;
-                TBExp.Enabled = false;
-            }
-            
-        }
-
-        private void updateLBMemNames()
-        {
-            LBMemNames.Items.Clear();
             int size = GetSssSize();
+
+            LBMemNames.Items.Clear();
 
             for (int i = 0; i < size; ++i)
             {
                 GetClassInfo_(ref info, i);
                 LBMemNames.Items.Add(info.firstname);
             }
+            LBMemNames.SelectedIndex = index;
         }
 
         private void BAddMember_Click(object sender, EventArgs e)
         {
-            AddMember();
-            updateLBMemNames();
+            ClassInfo inf = new ClassInfo();
+            inf.isBaseClass = 1;
+
+            Edit_emoployeecs edit_dialog = new Edit_emoployeecs(ref inf);
+
+            AddMember(ref inf);
+
+            updateLBMemNames(GetSssSize() - 1);
+
+            int addedMemberIndex = LBMemNames.Items.IndexOf(inf.firstname);
+
+            if (addedMemberIndex != -1)
+            {
+                LBMemNames.SelectedIndex = addedMemberIndex;
+                BEditData_Click(sender, e);
+            }
+        }
+
+        private void BAddPres_Click(object sender, EventArgs e)
+        {
+            ClassInfo inf = new ClassInfo();
+            inf.isBaseClass = 0;
+            AddPresident(ref inf);
+            updateLBMemNames(GetSssSize() - 1);
+
             LBMemNames.SelectedIndex = LBMemNames.Items.Count - 1;
-            currentIndex = LBMemNames.SelectedIndex;
-            enable_fields(1);
+
+            int addedManagerIndex = LBMemNames.Items.IndexOf(inf.firstname);
+
+            if (addedManagerIndex != -1)
+            {
+                LBMemNames.SelectedIndex = addedManagerIndex;
+                BEditData_Click(sender, e);
+            }
+
+            BEditData.Enabled = true;
+        }
+        private void BEditData_Click(object sender, EventArgs e)
+        {
+            int index = LBMemNames.SelectedIndex;
+            if (currentIndex == -1)
+                return;
+
+            ClassInfo inf = new ClassInfo();
+
+            GetClassInfo_(ref inf, index);
+
+            Edit_emoployeecs edit_dialog = new Edit_emoployeecs(ref inf);
+
+            if (edit_dialog.ShowDialog() == DialogResult.OK)
+            {
+                inf = edit_dialog.info;
+                SetClassInfo(ref inf, index);
+                updateLBMemNames();
+                LBMemNames.SelectedIndex = index;
+            }
+            BEditData.Enabled = true;
         }
 
         private void BSaveMembers_Click(object sender, EventArgs e)
@@ -127,25 +164,7 @@ namespace Gadelshin_Lab6
         {
             GetFromFile(new StringBuilder("test.dat"));
             updateLBMemNames();
-        }
-
-        private void BAddPres_Click(object sender, EventArgs e)
-        {
-            AddPresident();
-            updateLBMemNames();
-            LBMemNames.SelectedIndex = LBMemNames.Items.Count - 1;
-            currentIndex = LBMemNames.SelectedIndex;
-            enable_fields(1);
-        }
-
-        private void BEditData_Click(object sender, EventArgs e)
-        {
-            currentIndex = LBMemNames.SelectedIndex;
-            if (currentIndex == -1)
-                return;
-            SetClassInfo(ref info, currentIndex);
-            updateLBMemNames();
-            LBMemNames.SelectedIndex = currentIndex;
+            BEditData.Enabled = true;
         }
 
         private void BDelMember_Click(object sender, EventArgs e)
@@ -160,7 +179,7 @@ namespace Gadelshin_Lab6
             if (LBMemNames.Items.Count == 0)
             {
                 currentIndex = -1;
-                enable_fields(0);
+                BEditData.Enabled = false;
                 return;
             }
             if (currentIndex == LBMemNames.Items.Count)
@@ -169,57 +188,6 @@ namespace Gadelshin_Lab6
                 LBMemNames.SelectedIndex = currentIndex;
 
             currentIndex = LBMemNames.SelectedIndex;
-        }
-
-        private void TBName_TextChanged(object sender, EventArgs e)
-        {
-            info.firstname = TBName.Text;
-        }
-
-        private void TBGroup_TextChanged(object sender, EventArgs e)
-        {
-            info.secondname = TBGroup.Text;
-        }
-
-        private void TBRate_TextChanged(object sender, EventArgs e)
-        {
-            info.login = TBRate.Text;
-        }
-
-        private void TBExp_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                info.phone_number = Convert.ToUInt32(TBExp.Text);
-            }
-            catch (Exception)
-            {
-                info.phone_number = 0;
-            }
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                info.teamSize = Convert.ToUInt32(TBTeamSize.Text);
-            }
-            catch (Exception)
-            {
-                info.teamSize = 0;
-            }
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                info.expYears = Convert.ToUInt32(TBExperience.Text);
-            }
-            catch (Exception)
-            {
-                info.expYears = 0;
-            }
         }
 
         private void LBMemNames_SelectedIndexChanged(object sender, EventArgs e)
@@ -236,19 +204,14 @@ namespace Gadelshin_Lab6
             TBGroup.Text = info.secondname;
             TBRate.Text = info.login;
             TBExp.Text = Convert.ToString(info.phone_number);
-            enable_fields(1);
             if (info.isBaseClass == 1)
             {
                 TBTeamSize.Text = String.Empty;
-                TBTeamSize.Enabled = false;
                 TBExperience.Text = String.Empty;
-                TBExperience.Enabled = false;
             }
             else
             {
-                TBTeamSize.Enabled = true;
                 TBTeamSize.Text = Convert.ToString(info.teamSize);
-                TBExperience.Enabled = true;
                 TBExperience.Text = Convert.ToString(info.expYears);
             }
 
@@ -262,8 +225,6 @@ namespace Gadelshin_Lab6
             TBExp.Text = String.Empty;
             TBTeamSize.Text = String.Empty;
             TBExperience.Text = String.Empty;
-            TBTeamSize.Enabled = false;
-            TBExperience.Enabled = false;
         }
 
     }
